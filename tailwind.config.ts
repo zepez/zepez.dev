@@ -54,6 +54,9 @@ export default {
 				},
 				DEFAULT: {
 					css: {
+						img: {
+							margin: "0 auto",
+						},
 						a: {
 							"@apply cactus-link no-underline": "",
 						},
