@@ -16,7 +16,7 @@ Steal. Steal all the content.
 
 That's great, but can we steal ethically? I think so, hence: [nonovel.io](https://nonovel.io).
 
-The idea is simple: public domain books can be ethically and legally redistrubuted, so why not? In fact, this type of project is especially appealing to me due to the variety of directions it could go: 
+The idea is simple: public domain books can be ethically and legally redistributed, so why not? In fact, this type of project is especially appealing to me due to the variety of directions it could go: 
 
 - Social features like comments, following?
 - Self publishing? Allow users to monetize?
@@ -40,15 +40,15 @@ I'm constantly searching for the "ideal" stack. I want to make a lot of things, 
 
 > This is NOT a component library. It's a collection of re-usable components that you can copy and paste into your apps.
 
-- [**ModelFusion (formerly `ai-utils.js`)**](https://modelfusion.dev/guide/): This is effectively just a wrapper around a few popular model hosting providers for a consistant interface. I think I could have used LangChain, but that felt like overkill.
+- [**ModelFusion (formerly `ai-utils.js`)**](https://modelfusion.dev/guide/): This is effectively just a wrapper around a few popular model hosting providers for a consistent interface. I think I could have used LangChain, but that felt like overkill.
 
 ### Backend
 
 - [**Next.js**](https://nextjs.org/): See above ⬆️
-- [**NeonDB (serverless postgreSQL)**](https://neon.tech/): Neon is my go-to hosting provider for PostgreSQL, now. [Planetscale](https://planetscale.com/) and [Vitess](https://vitess.io/) are super cool, but they come with the significant limiation of not supporting foreign keys (and being built on top of MySQL 😢). [CockroachDB](https://www.cockroachlabs.com/) is probably fine, but Neon supports branching and has a great [serverless driver](https://github.com/neondatabase/serverless) that acts as a drop-in replacement for [node-postres](https://node-postgres.com/).
-- [**DrizzleORM**](https://orm.drizzle.team/): Typesafe database queries? [Knex.js](https://knexjs.org/)-like query builder? I'm in love.
+- [**NeonDB (serverless postgreSQL)**](https://neon.tech/): Neon is my go-to hosting provider for PostgreSQL, now. [Planetscale](https://planetscale.com/) and [Vitess](https://vitess.io/) are super cool, but they come with the significant limitation of not supporting foreign keys (and being built on top of MySQL 😢). [CockroachDB](https://www.cockroachlabs.com/) is probably fine, but Neon supports branching and has a great [serverless driver](https://github.com/neondatabase/serverless) that acts as a drop-in replacement for [node-postres](https://node-postgres.com/).
+- [**DrizzleORM**](https://orm.drizzle.team/): Type-safe database queries? [Knex.js](https://knexjs.org/)-like query builder? I'm in love.
 - **Redis** (for pub/sub)
-- [**Railway**](https://railway.app/): Railway is a hosting platform. But wait! It's actually... easy to use? It takes roughly two clicks to spin up a Redis instance. That's a refreshing break from the Kubernetes sigma grindset I've been on for the last two years. I highly recommend trying out Railway for low maintenance microservives. 
+- [**Railway**](https://railway.app/): Railway is a hosting platform. But wait! It's actually... easy to use? It takes roughly two clicks to spin up a Redis instance. That's a refreshing break from the Kubernetes sigma grindset I've been on for the last two years. I highly recommend trying out Railway for low maintenance microservices. 
 - [**Auth.js**](https://authjs.dev/): I don't have any significant complaints with Auth.js, but if I were starting over: I would likely go with a managed auth service, such as [Supabase Auth](https://supabase.com/) or [Clerk](https://clerk.com/). Auth.js is *fine* and I *could* roll my own auth (I've done so with previous projects), but both Clerk and Supabase have generous free tiers. I think the peace of mind that these services offer is worth the trade off of vendor lock-in.
 
 ## Importing content
@@ -56,7 +56,7 @@ I'm constantly searching for the "ideal" stack. I want to make a lot of things, 
 I'm not dedicated enough to copy and paste books page by page, so what some other options?
 
 1. parse distributable publication files (epub, mobi, etc)
-2. webscrape other sites that host the same content
+2. scrape other sites that host the same content
 
 I decided to parse `.epub` files; It's something I've wanted to try for a while. It should be simple - `.epub` files can be obtained from [Project Gutenburg](https://www.gutenberg.org/) and the format is open source. `.epub` files are just a `.zip` directory containing mostly `.html` files. 
 
@@ -70,7 +70,7 @@ Parsing `.epub` files was a fun challenge, though.
 
 ## Metadata
 
-The `.epub` files convienently have some of the required metadata embedded, such as book name and author. They do not, however, provide some key details that I need: 
+The `.epub` files conveniently have some of the required metadata embedded, such as book name and author. They do not, however, provide some key details that I need: 
 
 1. Synopsis
 2. Tagging
@@ -127,9 +127,9 @@ Of course, there's some additional processing required, but the whole workflow c
 
 1. Confirm that the model has enough knowledge on the book
 2. Get all genres from the database
-3. Format all genre names for consistancy
+3. Format all genre names for consistency
 4. Ask the model to select the proper genres
-5. Filter the response to ensure we're left with "real" genres, in the case of halucination
+5. Filter the response to ensure we're left with "real" genres, in the case of hallucination
 6. Get the ids for each genre and create the `project <-> project_genre <-> genre` database relation
 
 ### Covers
@@ -150,7 +150,7 @@ I explored some options for rasterizing PDFs, but also found that lacking - I re
 
 Puppeteer!
 
-[Puppeteer](https://github.com/puppeteer/puppeteer) allows you to run a headless Chomium instance and control the browser via their SDK. This is the workflow I landed on: 
+[Puppeteer](https://github.com/puppeteer/puppeteer) allows you to run a headless Chromium instance and control the browser via their SDK. This is the workflow I landed on: 
 
 1. Confirm that the model has enough knowledge on the book
 2. Use [Stability's API](https://platform.stability.ai/) to generate some art. This can be as complicated as you want: 
@@ -160,7 +160,7 @@ Puppeteer!
 ```
 
 3. Use handlebars to template the HTML cover
-4. Use puppeteer to launch a headless chrome instance
+4. Use puppeteer to launch a headless chromium instance
 5. Use puppeteer to screenshot the page
 6. Compress the screenshot using [Sharp](https://sharp.pixelplumbing.com/) and upload to your favorite object storage provider ([Cloudflare's R2](https://www.cloudflare.com/developer-platform/r2/), in my case)
 
