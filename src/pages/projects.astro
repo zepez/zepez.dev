@@ -1,0 +1,50 @@
+---
+import PageLayout from "@/layouts/Base";
+
+const projects = [
+    {
+        name: "zep.sh",
+        description: "This site :D",
+        link: "https://zep.sh",
+        retrospective: null,
+        repository: "https://github.com/zepez/zep.sh"
+    },
+    {
+        name: "nonovel.io",
+        description: "A web app for reading public domain books.",
+        link: "https://nonovel.io",
+        retrospective: "https://zep.sh/posts/nonovel-io/",
+        repository: "https://github.com/zepez/nonovel"
+    },
+]
+---
+
+<PageLayout meta={{ title: "Projects" }}>
+	<section>
+        <h1 class="title mb-6">Projects</h1>
+		<p class="mb-12">
+			Here are some of the projects I've worked on in the past. Some are proof of concepts, some are just for fun, and some are for work.
+		</p>
+
+        {projects.map((project) => (
+            <div class="mb-12">
+                <p class="mb-4 mt-2"><b>⭐️ {project.name}</b> - {project.description}</p>
+                {project.link && (
+                    <a href={project.link} class="cactus-link" target="_blank">Link</a>
+                )}
+                {project.retrospective && (
+                    <span>
+                        |
+                        <a href={project.retrospective} class="cactus-link" target="_blank">Retrospective</a>
+                    </span>
+                )}
+                {project.repository && (
+                    <span>
+                        |
+                        <a href={project.repository} class="cactus-link" target="_blank">Repo</a>
+                    </span>
+                )}
+            </div>
+        ))}
+    </section>
+</PageLayout>
