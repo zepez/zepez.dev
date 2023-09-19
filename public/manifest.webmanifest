@@ -1,7 +1,7 @@
 {
-	"name": "Astro Theme Cactus Demo",
-	"short_name": "Astro_Cactus",
-	"description": "Starter blog site for Astro",
+	"name": "Alexander Zepezauer",
+	"short_name": "zep.sh",
+	"description": "Alexander Zepezauer's Blog",
 	"icons": [
 		{
 			"src": "/192x192.png",
