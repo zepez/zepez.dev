@@ -32,7 +32,7 @@ I'm constantly searching for the "ideal" stack. I want to make a lot of things, 
 
 ### Frontend
 
-- [**Next.js**](https://nextjs.org/): Next is a great framework, but I probably wouldn't choose it again for this project. The number one priority was something that would easily adapt to serverless, but [Astro](https://astro.build/) would likely be a better choice as the content is largely static. I did get some hands-on time with the new App dir paradigm and RSC, so it was a success from that perspective. Another boon is lack of significant vendor lock-in: it's well documented on how to slap Next.js in a container and host it practically anywhere.
+- [**Next.js**](https://nextjs.org/): Next is a great framework, but I probably wouldn't choose it again for this project. The number one priority was something that would easily adapt to serverless, but [Astro](https://astro.build/) would likely be a better choice as the content is largely static. I did get some hands-on time with the new App dir paradigm and RSC, so it was a success from that perspective. Another boon is lack of significant vendor lock-in: it's well documented on how to slap Next.js in a container and host it on nearly any platform.
 
 - [**TailwindCSS**](https://tailwindcss.com/): Need I say more?
 
@@ -53,7 +53,7 @@ I'm constantly searching for the "ideal" stack. I want to make a lot of things, 
 
 ## Importing content
 
-I'm not dedicated enough to copy and paste books page by page, so what some other options?
+I'm not dedicated enough to copy and paste books page by page, so what are some other options?
 
 1. parse distributable publication files (epub, mobi, etc)
 2. scrape other sites that host the same content
@@ -134,7 +134,7 @@ Of course, there's some additional processing required, but the whole workflow c
 
 ### Covers
 
-Covers *can* be extracted from the original `.epub` file, but we can't safely assume that the cover is also within the public domain. What are the chances that the file contains the original cover to *Romeo and Juliet* from the 1500s?
+Covers *can* be extracted from the original `.epub` file, but we can't safely assume that the cover is also within the public domain. What are the chances that the file contains the original cover of *Romeo and Juliet* from the 1500s?
 
 So, time to create some covers.
 
@@ -182,4 +182,4 @@ An interesting SEO strategy is to publish articles or blog posts that are tangen
 
 Coincidentally, a while back, I came across an interesting GPT wrapper: [WriteSonic](https://writesonic.com). WriteSonic scrapes the web and uses embeddings to write informed articles. This seems like an ideal use-case. 
 
-[The articles it generates](https://nonovel.io/articles) are far from perfect, but they are the top ranking pages on Google (aside from the NoNovel homepage), so I'll classify it as a success. 
+[The articles it generates](https://nonovel.io/articles) are far from perfect, but they are the site's top ranking pages aside from the NoNovel homepage, so I'll classify it as a success. 
