@@ -1,12 +1,12 @@
 ---
-title: "nonovel.io, a retrospective"
-description: "I love making websites, but unless it's a SaaS or (h..."
-publishDate: "September 19, 2023"
+title: "Retrospective: nonovel.io"
+description: "Some insight into the decision making and challenges faced when building nonovel.io"
+publishDate: "September 30, 2023"
 tags: ["retrospective", "nonovel"]
 draft: false
 ---
 
-I love making websites, but unless it's a SaaS or (hopefully) useful tool: what can I say that hasn't already been said? Not much. I can only write so many blog posts and ChatGPT doesn't make very appealing content... yet. 
+I love making websites, but unless it's a SaaS or (hopefully) useful tool: what can I contribute? What can I say that hasn't already been said? Not much. I can only write so many blog posts and ChatGPT doesn't make very appealing content... yet. 
 
 So I want to make a website, but have nothing to share; what are my options? 
 
@@ -24,31 +24,35 @@ The idea is simple: public domain books can be ethically and legally redistribut
 - Track user chapter progress?
 - Customize reading experience, such as sizing, fonts or colors?
 
-Some of these ended up in production, some of them didn't. That's okay - it could change at any time. 
+Some of these ended up in production, some of them didn't. That's okay - it could change at any time. This is a passion project and I intend to continue working on it.
 
 ## Choosing a stack
 
-I'm constantly searching for the "ideal" stack. I want to make a lot of things, eventually; I want something comfortable and easy to work with.
+I'm constantly searching for the "ideal" stack. I want to make a lot of things, eventually; I need something comfortable and easy to work with.
 
 ### Frontend
 
-- [**Next.js**](https://nextjs.org/): Next is a great framework, but I probably wouldn't choose it again for this project. The number one priority was something that would easily adapt to serverless, but [Astro](https://astro.build/) would likely be a better choice as the content is largely static. I did get some hands-on time with the new App dir paradigm and RSC, so it was a success from that perspective. Another boon is lack of significant vendor lock-in: it's well documented on how to slap Next.js in a container and host it on nearly any platform.
+- [**Next.js**](https://nextjs.org/): Next is a great framework, but I probably wouldn't choose it again for this project. My priorities were simple: 
+  - Typescript
+  - Full Stack
+  - Serverless (scale to zero)
+  - Familiarity
+
+I've spent so much time with Next already that it was an easy pick, but [Astro](https://astro.build/) would likely be a better choice as the content is largely static. I did get some hands-on time with the new App directory and RSC, so it was still a success.
 
 - [**TailwindCSS**](https://tailwindcss.com/): Need I say more?
 
-- [**Radix primitives**](https://www.radix-ui.com/primitives) and [**shadcn/ui**](https://ui.shadcn.com/): This was my first time using either. The un-opinionated nature of Radix has been great; I'm never going back to [HeadlessUI](https://headlessui.com/). I also found that `shadcn/ui`'s management approach to work really well with my workflow - I'm curious to see if this will start a trend of component libraries that aren't actually libraries. Uh... hm. They explain it better: 
+- [**Radix primitives**](https://www.radix-ui.com/primitives) and [**shadcn/ui**](https://ui.shadcn.com/): This was my first time using either. The un-opinionated nature of Radix has been great. I also found that `shadcn/ui`'s management approach to work really well with my workflow - I'm curious to see if this will start a trend of component libraries that aren't actually libraries. Uh... hm. They explain it better: 
 
 > This is NOT a component library. It's a collection of re-usable components that you can copy and paste into your apps.
 
-- [**ModelFusion (formerly `ai-utils.js`)**](https://modelfusion.dev/guide/): This is effectively just a wrapper around a few popular model hosting providers for a consistent interface. I think I could have used LangChain, but that felt like overkill.
+- [**ModelFusion (formerly `ai-utils.js`)**](https://modelfusion.dev/guide/): This is effectively just a wrapper around a few popular model hosting provider's APIs. I think I could have used LangChain, but that felt like overkill.
 
 ### Backend
 
 - [**Next.js**](https://nextjs.org/): See above ⬆️
-- [**NeonDB (serverless postgreSQL)**](https://neon.tech/): Neon is my go-to hosting provider for PostgreSQL, now. [Planetscale](https://planetscale.com/) and [Vitess](https://vitess.io/) are super cool, but they come with the significant limitation of not supporting foreign keys (and being built on top of MySQL 😢). [CockroachDB](https://www.cockroachlabs.com/) is probably fine, but Neon supports branching and has a great [serverless driver](https://github.com/neondatabase/serverless) that acts as a drop-in replacement for [node-postres](https://node-postgres.com/).
+- [**NeonDB (serverless postgreSQL)**](https://neon.tech/): Neon has become my go-to hosting provider for PostgreSQL. [Planetscale](https://planetscale.com/) and [Vitess](https://vitess.io/) are super cool, but don't support foreign keys (and are built on top of MySQL 😢). [CockroachDB](https://www.cockroachlabs.com/) is probably fine, but Neon supports branching and has a great [serverless driver](https://github.com/neondatabase/serverless) that acts as a drop-in replacement for [node-postgres](https://node-postgres.com/). Vercel is reselling Neon's service branded as [Vercel Postres](https://vercel.com/docs/storage/vercel-postgres); if it's good enough for them then it's probably good enough for me. 
 - [**DrizzleORM**](https://orm.drizzle.team/): Type-safe database queries? [Knex.js](https://knexjs.org/)-like query builder? I'm in love.
-- **Redis** (for pub/sub)
-- [**Railway**](https://railway.app/): Railway is a hosting platform. But wait! It's actually... easy to use? It takes roughly two clicks to spin up a Redis instance - a refreshing break from Kubernetes hell. I highly recommend trying out Railway for low maintenance microservices. 
 - [**Auth.js**](https://authjs.dev/): I don't have any significant complaints with Auth.js, but if I were starting over: I would likely go with a managed auth service, such as [Supabase Auth](https://supabase.com/) or [Clerk](https://clerk.com/). Auth.js is *fine* and I *could* roll my own auth (I've done so with previous projects), but both Clerk and Supabase have generous free tiers. I think the peace of mind that these services offer is worth the trade off of vendor lock-in.
 
 ## Importing content
@@ -58,19 +62,19 @@ I'm not dedicated enough to copy and paste books page by page, so what are some 
 1. parse distributable publication files (epub, mobi, etc)
 2. scrape other sites that host the same content
 
-I decided to parse `.epub` files; It's something I've wanted to try for a while. It should be simple - `.epub` files can be obtained from [Project Gutenburg](https://www.gutenberg.org/) and the format is open source. `.epub` files are just a `.zip` directory containing mostly `.html` files. 
+I decided to parse `.epub` files; It's something I've wanted to try for a while. The process is pretty straightforward on paper - epub files can be obtained from [Project Gutenburg](https://www.gutenberg.org/) and epub is an open standard. An epub file is just a zipped directory containing HTML and XML files. 
 
-As it turns out, both options end up being an exercise in traversing HTML.
+As it turns out, both of the above options end up being an exercise in traversing HTML.
 
-Unfortunately, the `.epub` spec has several versions, and most books seem to attempt to adhere to v2 and v3 at the same time for backwards compatibility. This leads to some wacky results. 
+Unfortunately, the epub specification has several versions, and most books seem to attempt to adhere to v2 and v3 at the same time for backwards compatibility. This leads to some wacky results. 
 
 Looking back, option number 2 would have been significantly easier. Project Gutenburg typically also has [HTML versions](https://www.gutenberg.org/files/1513/1513-h/1513-h.htm) of the same books. 
 
-Parsing `.epub` files was a fun challenge, though.
+Parsing epub files was a fun challenge, though.
 
 ## Metadata
 
-The `.epub` files conveniently have some of the required metadata embedded, such as book name and author. They do not, however, provide some key details that I need: 
+Epub files conveniently have some of the required metadata embedded, such as book name and author. They do not, however, provide some key details that I need: 
 
 1. Synopsis
 2. Tagging
@@ -78,7 +82,7 @@ The `.epub` files conveniently have some of the required metadata embedded, such
 
 ### Synopsis
 
-It's the perfect excuse to use AI, right? Most of the books I'm interested in are *old* - certainly old enough to be written well before the 2021 knowledge cutoff of OpenAI's public models. 
+This is the perfect excuse to use AI, right? Most of the books I'm interested in are *old* - certainly old enough to be written well before the 2021 knowledge cutoff of OpenAI's public models. 
 
 Synopsis generation can be done zero-shot, like so:
 
@@ -107,7 +111,9 @@ const knows = response.toLowerCase() === "true";
 if (!knows) throw new Error();
 ```
 
-I also use this specific trick for tagging and cover generation.
+This solution isn't perfect - the model can still hallucinate, but it has significantly improved the output accuracy. 
+
+I use this specific trick for tagging and cover generation as well.
 
 ### Tagging
 
@@ -134,47 +140,49 @@ Of course, there's some additional processing required, but the whole workflow c
 
 ### Covers
 
-Covers *can* be extracted from the original `.epub` file, but we can't safely assume that the cover is also within the public domain. What are the chances that the file contains the original cover of *Romeo and Juliet* from the 1500s?
+Covers *can* be extracted from the original epub file, but we can't safely assume that the cover is also within the public domain. What are the chances that the file contains the original cover art for *Romeo and Juliet* made in the 1500s?
+
+Some of the embedded covers may be in the public domain and allow redistribution, but verifying that takes time and the goal is to automate as much as possible. 
 
 So, time to create some covers.
 
-I had a lot of fun with this. My first though was to use [Satori](https://github.com/vercel/satori) to convert JSX to PNGs. I *really* wanted this to work, but found that Satori has a lot of limitations. For example, [`flex` and `none` are the only supported display properties](https://github.com/vercel/satori#css). It's a trade-off between DX and real-time, on-the-fly generation. Here's a proof of concept for the OG image of a chapter page:
+I had a lot of fun with this. My first though was to use [Satori](https://github.com/vercel/satori) to render JSX to SVGs or PNGs. I *really* wanted this to work, but found that Satori too limiting. For example, [`flex` and `none` are the only supported display properties](https://github.com/vercel/satori#css). It's a trade-off between DX and real-time, on-the-fly generation. Here's a proof of concept for the OG image of a chapter page:
 
-![The Three Musketeers PoC OG image](https://nonovel.io/api/og/p?title=The%20Three%20Musketeers&image=the-three-musketeers/cover/2023-07-31T23:30:09.653Z.jpeg&chapter=Concerning%20A%20Court%20Intrigue)
+![The Art of War OG image proof of concept](https://nonovel.io/api/og/p?title=The%20Art%20of%20War&image=the-art-of-war/cover/2023-09-24T04:38:04.392Z.jpeg&chapter=Attack%20by%20Stratagem)
 
 The design can and will (*eventually*) be improved, but it won't be fun.
 
 I explored some options for rasterizing PDFs, but also found that lacking - I really wanted the full flexibility of HTML and CSS.
 
-...
+...🤔
 
 Puppeteer!
 
 [Puppeteer](https://github.com/puppeteer/puppeteer) allows you to run a headless Chromium instance and control the browser via their SDK. This is the workflow I landed on: 
 
-1. Confirm that the model has enough knowledge on the book
-2. Use [Stability's API](https://platform.stability.ai/) to generate some art. This can be as complicated as you want: 
+1. Create an endpoint for launching puppeteer: `/api/cover/screenshot?id=id`
+2. Confirm that the model has enough knowledge on the book to reduce hallucination
+3. Send puppeteer to a dynamic page that renders the cover `/cover?id=id`
+   - Retrieve book details from the database
+   - Use [Stability's API](https://platform.stability.ai/) (via ModelFusion) to generate some art
+   - Render the page using JSX, just like any other page
+4. Screenshot the page using puppeteer
+5. Compress the screenshot using [Sharp](https://sharp.pixelplumbing.com/)
+6. Upload to your favorite object storage provider ([Cloudflare's R2](https://www.cloudflare.com/developer-platform/r2/), in my case)
 
-```typescript
-`beautiful book illustration, ${title}, ${author}`
-```
+You may have questions about step 2. How can I confirm that an image generation model has specific knowledge of something? Well... I don't. I'm actually asking OpenAI's GPT-4. I'm just assuming that Stability's model won't have knowledge of the book if GPT-4 doesn't. If GPT-4 doesn't have the requisite knowledge, I'm instructing Stability to generate an abstract pattern instead. 
 
-3. Use handlebars to template the HTML cover
-4. Use puppeteer to launch a headless chromium instance
-5. Use puppeteer to screenshot the page
-6. Compress the screenshot using [Sharp](https://sharp.pixelplumbing.com/) and upload to your favorite object storage provider ([Cloudflare's R2](https://www.cloudflare.com/developer-platform/r2/), in my case)
+Here's an example of a generated cover:
 
-You may have questions about step 1. How can I confirm that an image generation model has specific knowledge? Well... I don't. I'm actually asking OpenAI's ChatGPT. I'm just assuming that Stability's model won't have knowledge of the book if ChatGPT doesn't. If ChatGPT doesn't have the requisite knowledge, I'm instructing Stability to generate an abstract pattern instead. 
+![The Enchanted April PoC cover](https://nonovel.io/_next/image?url=https%3A%2F%2Fcdn.nonovel.io%2Fromeo-and-juliet%2Fcover%2F2023-09-24T04%253A39%253A48.547Z.jpeg&w=828&q=75)
 
-Here's a simple proof of concept cover: 
+There's a few additional steps that I'll gloss over here. Namely: 
 
-![The Enchanted April PoC cover](https://nonovel.io/_next/image?url=https://cdn.nonovel.io/the-enchanted-april/cover/2023-07-31T23%253A22%253A51.228Z.jpeg&w=828&q=75)
-
-Design improvements are necessary, but it works!
-
-The biggest drawback of this approach comes from my own inaccurate assumptions. I didn't think it was possible to run puppeteer from within AWS Lambda functions (ergo Vercel). My solution to this was to create a microservice that uses a [Bull queue](https://github.com/OptimalBits/bull), specifically for generating covers. I embedded Puppeteer in the container and threw it up in Railway. 
-
-This approach is *okay*, but requires a long-running server. However, I recently found [chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda), which should allow me to create a serverless endpoint for generating the covers 🎉. I'll be exploring that in the coming weeks.
+1. All endpoints (steps 1 - 3) need to be authorized to prevent abuse
+2. Randomize the cover generation with a few different variations to make them less repetitive
+3. Chromium does not work natively in serverless platforms. [@sparticuz/chromium](https://github.com/Sparticuz/chromium), however, does
+4. Image generation APIs can take a while. I found it necessary to [increase Vercel's maxDuration](https://vercel.com/blog/customizing-serverless-functions) allowance for Lambda execution
+5. Some REST clients have an insufficient default request timeout window. [Insomnia, for example, had a default of 30 seconds](https://docs.insomnia.rest/insomnia/request-timeouts)
 
 ## Articles?
 
@@ -183,3 +191,9 @@ An interesting SEO strategy is to publish articles or blog posts that are tangen
 Coincidentally, a while back, I came across an interesting GPT wrapper: [WriteSonic](https://writesonic.com). WriteSonic scrapes the web and uses embeddings to write informed articles. This seems like an ideal use-case. 
 
 [The articles it generates](https://nonovel.io/articles) are far from perfect, but they are the site's top ranking pages aside from the NoNovel homepage, so I'll classify it as a success. 
+
+## Conclusion
+
+This was a fun project; I learned a lot and got to play with a few different AIaaS APIs.
+
+I'm still not sure if I would be better served by a batteries-included stack like Supabase, but did find that the choices I made were not a significant limiting factor of the end product. 
