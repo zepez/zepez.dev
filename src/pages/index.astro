@@ -5,7 +5,7 @@ import SocialList from "@/components/SocialList";
 const projects = [
     {
         name: "zep.sh",
-        description: "This site. As simple as possible, theme provided by @chrismwilliams/astro-theme-cactus",
+        description: "This site. As simple as possible, theme provided by <a href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
         link: "https://zep.sh",
         retrospective: null,
         repository: "https://github.com/zepez/zep.sh",
@@ -21,11 +21,19 @@ const projects = [
     },
     {
         name: "nashandpine.com",
-        description: "A *very simple* brochure site I did for a previoius employer. The web arm of that business has since been shut down and I have permission to host a mirror of the site.",
+        description: "A <i>very simple</i> brochure site I did for a previoius employer. The web arm of that business has since been shut down and I have permission to host a mirror of the site.",
         link: "https://nashandpine.zep.sh",
         retrospective: null,
         repository: "https://github.com/zepez/nashandpine.com",
 		emoji: "📰"
+    },
+    {
+        name: "wilsonrotary.com",
+        description: "Another project I did for a previous employer, this time using Wordpress.",
+        link: "https://wilsonrotary.com",
+        retrospective: null,
+        repository: null,
+		emoji: "⚙️"
     },
 ]
 ---
@@ -42,7 +50,7 @@ const projects = [
 	<section aria-label="Project list">
         <h2 class="title mb-4 text-xl mt-16">Projects</h2>
 		<p class="mb-12">
-			Here are some of the projects I've worked on in the past. Some are proof of concepts, some are just for fun, and some are for work.
+			The projects listed here are still publicly available. Others have since been retired or transitioned and I am not able to maintain a public mirror.
 		</p>
 
 		<ul>
@@ -50,7 +58,7 @@ const projects = [
 				<li class="mb-12">
 					<p class="mb-4 mt-2">
 						<span class="text-2xl mr-2">{project.emoji}</span>
-						<b>{project.name}</b> - {project.description}
+						<b>{project.name}</b> - <Fragment set:html={project.description} />
 					</p>
 
 					{project.link && (
