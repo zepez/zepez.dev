@@ -13,6 +13,9 @@ import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 export default defineConfig({
 	// ! Please remember to replace the following site property with your own domain
 	site: "https://zep.sh/",
+	redirects: {
+		"/projects": "/",
+	},
 	markdown: {
 		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
 		remarkRehype: { footnoteLabelProperties: { className: [""] } },

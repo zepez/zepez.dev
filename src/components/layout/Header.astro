@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from "../ThemeToggle.astro";
 import Search from "../Search.astro";
+import Logo from "../Logo.astro"
 import { menuLinks } from "@/site-config";
 
 const url = new URL(Astro.request.url);
@@ -31,42 +32,45 @@ const url = new URL(Astro.request.url);
 
 <header
 	id="main-header"
-	class="group relative mb-28 flex items-center sm:ps-[4.5rem]"
+	class="group relative mb-28 flex items-center"
 	transition:persist
 >
-	<div class="flex sm:flex-col">
+	<div class="flex gap-4 items-center">
 		<a
 			href="/"
-			class="inline-flex items-center grayscale hover:filter-none sm:relative sm:inline-block"
+			class="inline-flex items-center"
 			aria-current={url.pathname === "/" ? "page" : false}
 		>
-			<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500" class="me-3 h-10 w-6 sm:absolute sm:start-[-4.5rem] sm:me-0 sm:h-20 sm:w-12">
-				<title>icon-svg</title>
-				<style>
-					.s0 { fill: #ffffff } 
-				</style>
-				<path id="Layer" class="s0" d="m443.5 206c-13.2 0-25 5.7-33.2 14.8h-88.1l62.3-62.3c12.2 0.7 24.6-3.6 33.9-12.9 17.4-17.4 17.4-45.6 0-63-17.4-17.4-45.5-17.4-62.9 0-9.4 9.3-13.7 21.7-13 33.9l-62.3 62.3v-88.1c9.1-8.1 14.8-20 14.8-33.2 0-24.6-19.9-44.5-44.5-44.5-24.6 0-44.5 19.9-44.5 44.5 0 13.2 5.7 25.1 14.8 33.2v88.1l-62.3-62.3c0.7-12.2-3.6-24.6-12.9-33.9-17.4-17.4-45.6-17.4-63 0-17.4 17.4-17.4 45.6 0 63 9.3 9.3 21.7 13.6 33.9 12.9l62.3 62.3h-88.1c-8.1-9.1-20-14.8-33.2-14.8-24.6 0-44.5 19.9-44.5 44.5 0 24.6 19.9 44.5 44.5 44.5 13.2 0 25.1-5.7 33.2-14.8h88.1l-62.3 62.3c-12.2-0.7-24.6 3.6-33.9 13-17.4 17.4-17.4 45.5 0 62.9 17.4 17.4 45.6 17.4 63 0 9.3-9.3 13.6-21.7 12.9-33.9l62.3-62.3v88.1c-9.1 8.1-14.8 20-14.8 33.2 0 24.6 19.9 44.5 44.5 44.5 24.6 0 44.5-19.9 44.5-44.5 0-13.2-5.7-25.1-14.8-33.2v-88.1l62.3 62.3c-0.7 12.2 3.6 24.6 13 33.9 17.4 17.4 45.5 17.4 62.9 0 17.4-17.4 17.4-45.6 0-63-9.3-9.3-21.7-13.6-33.9-12.9l-62.3-62.3h88.1c8.1 9.1 20 14.8 33.2 14.8 24.6 0 44.5-19.9 44.5-44.5 0-24.6-19.9-44.5-44.5-44.5z"/>
-			</svg>
-			<span class="text-xl font-bold sm:text-2xl">Alexander <br/> Zepezauer</span>
+			<Logo />
 		</a>
-		<nav
-			id="navigation-menu"
-			class="absolute -inset-x-4 top-14 hidden flex-col items-end gap-y-4 rounded-md bg-bgColor/[.85] py-4 text-accent shadow backdrop-blur group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:items-center sm:divide-x sm:divide-dashed sm:divide-accent sm:rounded-none sm:bg-transparent sm:py-0 sm:shadow-none sm:backdrop-blur-none"
-			aria-label="Main menu"
-		>
-			{
-				menuLinks.map((link) => (
-					<a
-						href={link.path}
-						class="px-4 py-4 sm:py-0 sm:hover:underline"
-						aria-current={url.pathname === link.path ? "page" : false}
-						rel="prefetch"
-					>
-						{link.title}
-					</a>
-				))
-			}
-		</nav>
+
+		<div>
+			<a
+				href="/"
+				class="text-xl font-bold sm:text-2xl"
+				aria-current={url.pathname === "/" ? "page" : false}
+			>
+				Alexander <br/> Zepezauer
+			</a>
+			<nav
+				id="navigation-menu"
+				class="absolute -inset-x-4 top-14 hidden flex-col items-end gap-y-4 rounded-md bg-bgColor/[.85] py-4 text-accent shadow backdrop-blur group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:items-center sm:divide-x sm:divide-dashed sm:divide-accent sm:rounded-none sm:bg-transparent sm:py-0 sm:shadow-none sm:backdrop-blur-none"
+				aria-label="Main menu"
+			>
+				{
+					menuLinks.map((link) => (
+						<a
+							href={link.path}
+							class="px-4 py-4 sm:py-0 sm:hover:underline"
+							aria-current={url.pathname === link.path ? "page" : false}
+							rel="prefetch"
+						>
+							{link.title}
+						</a>
+					))
+				}
+			</nav>
+		</div>
 	</div>
 	<Search />
 	<ThemeToggle />
