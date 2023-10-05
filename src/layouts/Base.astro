@@ -1,6 +1,5 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import { GoogleAnalytics } from "astro-google-analytics";
 
 import type { SiteMeta } from "@/types";
 import BaseHead from "@/components/BaseHead";
@@ -23,7 +22,7 @@ const {
 	<head>
 		<BaseHead title={title} description={description} ogImage={ogImage} articleDate={articleDate} />
 		<ViewTransitions />
-		<GoogleAnalytics id="G-VJ65754X99" />
+		<script defer data-domain="zepez.dev" src="/plausible/js/script.js"></script>
 	</head>
 	<body>
 		<ThemeProvider />
