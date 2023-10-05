@@ -146,11 +146,11 @@ Some of the embedded covers may be in the public domain and allow redistribution
 
 So, time to create some covers.
 
-I had a lot of fun with this. My first though was to use [Satori](https://github.com/vercel/satori) to render JSX to SVGs or PNGs. I *really* wanted this to work, but found that Satori too limiting. For example, [`flex` and `none` are the only supported display properties](https://github.com/vercel/satori#css). It's a trade-off between DX and real-time, on-the-fly generation. Here's a proof of concept for the OG image of a chapter page:
+I had a lot of fun with this. My first though was to use [Satori](https://github.com/vercel/satori) to render JSX to SVGs or PNGs. I *really* wanted this to work, but found that Satori too limiting. For example, [`flex` and `none` are the only supported display properties](https://github.com/vercel/satori#css). It's a trade-off between DX and real-time, on-the-fly generation. Here's an example OG image that I'm generating:
 
-![The Art of War OG image proof of concept](https://nonovel.io/api/og/p?title=The%20Art%20of%20War&image=the-art-of-war/cover/2023-09-24T04:38:04.392Z.jpeg&chapter=Attack%20by%20Stratagem)
+![Frankenstein OG image proof of concept](https://nonovel.io/api/og/p?id=15522bf4-71fa-41ed-87b5-7b40f8a7db6b)
 
-The design can and will (*eventually*) be improved, but it won't be fun.
+It's *okay*, but the title in that example has an orphan that sticks significantly. Elsewhere, I'm using [React Wrap Balancer](https://react-wrap-balancer.vercel.app/) to avoid the issue entirely, but I'm not able to use that or any other text balancing scripts from within Satori. 
 
 I explored some options for rasterizing PDFs, but also found that lacking - I really wanted the full flexibility of HTML and CSS.
 
