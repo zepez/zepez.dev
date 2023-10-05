@@ -148,7 +148,7 @@ So, time to create some covers.
 
 I had a lot of fun with this. My first though was to use [Satori](https://github.com/vercel/satori) to render JSX to SVGs or PNGs. I *really* wanted this to work, but found that Satori too limiting. For example, [`flex` and `none` are the only supported display properties](https://github.com/vercel/satori#css). It's a trade-off between DX and real-time, on-the-fly generation. Here's an example OG image that I'm generating:
 
-![Frankenstein OG image proof of concept](https://nonovel.io/api/og/p?id=15522bf4-71fa-41ed-87b5-7b40f8a7db6b)
+![Generated Frankenstein OG image](https://nonovel.io/api/og/p?id=15522bf4-71fa-41ed-87b5-7b40f8a7db6b)
 
 It's *okay*, but the title in that example has an orphan that sticks significantly. Elsewhere, I'm using [React Wrap Balancer](https://react-wrap-balancer.vercel.app/) to avoid the issue entirely, but I'm not able to use that or any other text balancing scripts from within Satori. 
 
@@ -174,7 +174,7 @@ You may have questions about step 2. How can I confirm that an image generation 
 
 Here's an example of a generated cover:
 
-![The Enchanted April PoC cover](https://nonovel.io/_next/image?url=https%3A%2F%2Fcdn.nonovel.io%2Fromeo-and-juliet%2Fcover%2F2023-09-24T04%253A39%253A48.547Z.jpeg&w=828&q=75)
+![Generated Frankenstein cover image](https://nonovel.io/_next/image?url=https%3A%2F%2Fcdn.nonovel.io%2Ffrankenstein-or-the-modern-prometheus%2Fcover%2F2023-10-04T00%253A38%253A18.348Z.jpeg&w=828&q=100)
 
 There's a few additional steps that I'll gloss over here. Namely: 
 
