@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zep.sh/sitemap-index.xml
+Sitemap: https://zepez.dev/sitemap-index.xml

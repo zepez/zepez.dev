@@ -1,6 +1,6 @@
-# zep.sh
+# zepez.dev
 
-This is the repository for my personal blog / portfolio. The deployed version can be found at [zep.sh](https://zep.sh).
+This is the repository for my personal blog / portfolio. The deployed version can be found at [zepez.dev](https://zepez.dev).
 
 This project was made from a template. [Please check out this repository](https://github.com/chrismwilliams/astro-theme-cactus) for full documentation.
 

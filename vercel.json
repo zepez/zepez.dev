@@ -1,0 +1,9 @@
+{
+	"redirects": [
+		{
+			"source": "https://zep.sh/(.*)",
+			"destination": "https://zepez.dev/:path*",
+			"statusCode": 301
+		}
+	]
+}

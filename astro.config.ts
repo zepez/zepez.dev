@@ -12,7 +12,7 @@ import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
 	// ! Please remember to replace the following site property with your own domain
-	site: "https://zep.sh/",
+	site: "https://zepez.dev/",
 	redirects: {
 		"/projects": "/",
 	},
