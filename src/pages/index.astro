@@ -5,11 +5,11 @@ import SocialList from "@/components/SocialList";
 const projects = [
     {
         name: "zepez.dev",
-        description: "This site. As simple as possible, theme provided by <a href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
+        description: "This site. As simple as possible, theme modified from <a href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
         link: "https://zepez.dev",
         retrospective: null,
         repository: "https://github.com/zepez/zepez.dev",
-		emoji: "🙋🏻‍♂️"
+		emoji: "👋🏻"
     },
     {
         name: "nonovel.io",
@@ -29,7 +29,7 @@ const projects = [
     },
     {
         name: "wilsonrotary.com",
-        description: "Another simple project for a previous employer, this time using Wordpress.",
+        description: "B2B contracted site built with Wordpress to enable self management and maintenance.",
         link: "https://wilsonrotary.com",
         retrospective: null,
         repository: null,
@@ -37,7 +37,7 @@ const projects = [
     },
     {
         name: "haulinhatchets.com",
-        description: "Utilitarian site for a mobile axe throwing trailer based out of Wilson, North Carolina. Waiver signatures and contact inqueries are propagated to the owner via email and backed up to Airtable. Will eventually spend some time on the design ;).",
+        description: "Mobile axe throwing trailer based out of Wilson, North Carolina. Waiver signatures and contact inqueries are emailed to all involved parties and backed up to Airtable. Redesign pending™️",
         link: "https://haulinhatchets.com",
         retrospective: null,
         repository: "https://github.com/zepez/haulinhatchets.com",
@@ -48,11 +48,13 @@ const projects = [
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-6">Hey 👋🏻, I'm Alex</h1>
+		<h1 class="title mb-6">Alexander Zepezauer</h1>
 		<p class="mb-4">
-			I make things and have thoughts, so here I am sharing them. 
+			Hey, I'm Alex. I make websites.  
 		</p>
-		<SocialList />
+		<ul class="flex gap-4">
+			<SocialList />
+		</ul>
 	</section>
 
 	<section aria-label="Project list">
@@ -63,27 +65,30 @@ const projects = [
 
 		<ul>
 			{projects.map((project) => (
-				<li class="mb-12">
-					<p class="mb-4 mt-2">
-						<span class="text-2xl mr-2">{project.emoji}</span>
-						<b>{project.name}</b> - <Fragment set:html={project.description} />
-					</p>
+				<li class="mb-12 flex gap-8">
+					<div class="flex flex-shrink-0 items-center justify-center h-24 w-24 text-4xl bg-link/50 rounded-md">{project.emoji}</div>
 
-					{project.link && (
-						<a href={project.link} class="cactus-link" target="_blank">Site</a>
-					)}
-					{project.repository && (
-						<span>
-							|
-							<a href={project.repository} class="cactus-link" target="_blank">Repo</a>
-						</span>
-					)}
-					{project.retrospective && (
-						<span>
-							|
-							<a href={project.retrospective} class="cactus-link" target="_blank">Retrospective</a>
-						</span>
-					)}
+					<div>
+						<p class="pb-4">
+							<b class="text-accent">{project.name}</b> - <Fragment set:html={project.description} />
+						</p>
+	
+						{project.link && (
+							<a href={project.link} class="link" target="_blank">Site</a>
+						)}
+						{project.repository && (
+							<span>
+								{", "}
+								<a href={project.repository} class="link" target="_blank">Repository</a>
+							</span>
+						)}
+						{project.retrospective && (
+							<span>
+								{", "}
+								<a href={project.retrospective} class="link" target="_blank">Retrospective</a>
+							</span>
+						)}
+					</div>
 				</li>
 			))}
 		</ul>

@@ -28,7 +28,7 @@ export default {
 				quote: "hsl(var(--theme-quote) / <alpha-value>)",
 			},
 			fontFamily: {
-				// Add any custom fonts here
+				display: ["cal-sans", ...fontFamily.sans],
 				sans: [...fontFamily.sans],
 				serif: [...fontFamily.serif],
 			},
@@ -58,7 +58,7 @@ export default {
 							margin: "0 auto",
 						},
 						a: {
-							"@apply cactus-link no-underline": "",
+							"@apply link": "",
 						},
 						strong: {
 							fontWeight: "700",
@@ -119,17 +119,12 @@ export default {
 		require("@tailwindcss/aspect-ratio"),
 		plugin(function ({ addComponents }) {
 			addComponents({
-				".cactus-link": {
-					"@apply bg-[size:100%_6px] bg-bottom bg-repeat-x": {},
-					backgroundImage:
-						"linear-gradient(transparent,transparent 5px,hsl(var(--theme-text)) 5px,hsl(var(--theme-text)))",
-					"&:hover": {
-						backgroundImage:
-							"linear-gradient(transparent,transparent 4px,hsl(var(--theme-link)) 4px,hsl(var(--theme-link)))",
-					},
-				},
 				".title": {
-					"@apply text-2xl font-semibold text-accent-2": {},
+					"@apply text-4xl font-display font-semibold text-accent-2 leading-tight": {},
+				},
+				".link": {
+					"@apply text-link underline underline-offset-2 decoration-link/30 hover:decoration-link":
+						{},
 				},
 			});
 		}),
