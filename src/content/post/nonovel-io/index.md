@@ -150,7 +150,7 @@ I had a lot of fun with this. My first though was to use [Satori](https://github
 
 ![Generated Frankenstein OG image](https://nonovel.io/api/og/p?id=15522bf4-71fa-41ed-87b5-7b40f8a7db6b)
 
-It's *okay*, but the title in that example has an orphan that sticks significantly. Elsewhere, I'm using [React Wrap Balancer](https://react-wrap-balancer.vercel.app/) to avoid the issue entirely, but I'm not able to use that or any other text balancing scripts from within Satori. 
+It's *okay*, but the title in that example has an ugly orphan. Elsewhere, I'm using [React Wrap Balancer](https://react-wrap-balancer.vercel.app/) to avoid the issue entirely, but I'm not able to use that or any other text balancing scripts from within Satori. 
 
 I explored some options for rasterizing PDFs, but also found that lacking - I really wanted the full flexibility of HTML and CSS.
 
