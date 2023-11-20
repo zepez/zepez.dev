@@ -9,6 +9,8 @@ import Footer from "@/components/layout/Footer";
 import SkipLink from "@/components/SkipLink";
 import { siteConfig } from "@/site-config";
 
+import Spotlight from '../components/react/Spotlight.tsx';
+
 interface Props {
 	meta: SiteMeta;
 }
@@ -27,10 +29,12 @@ const {
 	<body>
 		<ThemeProvider />
 		<SkipLink />
-		<Header />
-		<main id="main">
-			<slot />
-		</main>
-		<Footer />
+		<Spotlight client:load>
+			<Header />
+			<main id="main">
+				<slot />
+			</main>
+			<Footer />
+		</Spotlight>
 	</body>
 </html>
