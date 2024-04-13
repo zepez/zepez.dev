@@ -4,6 +4,14 @@ import SocialList from "@/components/SocialList";
 
 const projects = [
     {
+        name: "instanticon.app",
+        description: "A simple web app for generating favicons and app icons that can be exported as an SVG or PNG.",
+        link: "https://instanticon.app",
+        retrospective: null,
+        repository: "https://github.com/zepez/instanticon.app",
+		emoji: "🎨"
+    },
+    {
         name: "zepez.dev",
         description: "This site. As simple as possible, theme modified from <a href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
         link: "https://zepez.dev",
@@ -66,7 +74,7 @@ const projects = [
 		<ul>
 			{projects.map((project) => (
 				<li class="mb-12 flex gap-8">
-					<div class="flex flex-shrink-0 items-center justify-center h-24 w-24 text-4xl bg-link/50 rounded-md">{project.emoji}</div>
+					<div class="flex flex-shrink-0 items-center justify-center h-24 w-24 text-4xl bg-link/20 rounded-md">{project.emoji}</div>
 
 					<div>
 						<p class="pb-4">
@@ -78,13 +86,13 @@ const projects = [
 						)}
 						{project.repository && (
 							<span>
-								{", "}
+								{" • "}
 								<a href={project.repository} class="link" target="_blank">Repository</a>
 							</span>
 						)}
 						{project.retrospective && (
 							<span>
-								{", "}
+								{" • "}
 								<a href={project.retrospective} class="link" target="_blank">Retrospective</a>
 							</span>
 						)}
