@@ -3,23 +3,7 @@ import PageLayout from "@/layouts/Base";
 import SocialList from "@/components/SocialList";
 
 const projects = [
-    {
-        name: "instanticon.app",
-        description: "A simple web app for generating favicons and app icons that can be exported as an SVG or PNG.",
-        link: "https://instanticon.app",
-        retrospective: null,
-        repository: "https://github.com/zepez/instanticon.app",
-		emoji: "🎨"
-    },
-    {
-        name: "zepez.dev",
-        description: "This site. As simple as possible, theme modified from <a href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
-        link: "https://zepez.dev",
-        retrospective: null,
-        repository: "https://github.com/zepez/zepez.dev",
-		emoji: "👋🏻"
-    },
-    {
+	{
         name: "nonovel.io",
         description: "A website for reading public domain books.",
         link: "https://nonovel.io",
@@ -28,8 +12,32 @@ const projects = [
 		emoji: "📚"
     },
     {
+        name: "tldw.info",
+        description: "Too long, didn't watch. Summarize YouTube videos from the public transcript using generative AI.",
+        link: "https://tldw.info",
+        retrospective: null,
+        repository: "https://github.com/zepez/tldw.info",
+		emoji: "📹"
+    },
+    {
+        name: "instanticon.app",
+        description: "A simple web app for generating favicons and app icons that can be exported as an SVG or PNG.",
+        link: "https://instanticon.app",
+        retrospective: null,
+        repository: "https://github.com/zepez/instanticon.app",
+		emoji: "🎨"
+    },
+	{
+        name: "zepez.dev",
+        description: "This site. As simple as possible, theme modified from <a class='link' href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
+        link: "https://zepez.dev",
+        retrospective: null,
+        repository: "https://github.com/zepez/zepez.dev",
+		emoji: "📍"
+    },
+    {
         name: "nashandpine.com",
-        description: "A <i>very simple</i> brochure site I did for a previoius employer. The web arm of that business has since been shut down and I have permission to host a mirror of the site.",
+        description: "<i>Very simple</i> brochure site. The site is no longer maintained, but a mirror is available.",
         link: "https://nashandpine.zepez.dev",
         retrospective: null,
         repository: "https://github.com/zepez/nashandpine.com",
@@ -37,11 +45,11 @@ const projects = [
     },
     {
         name: "wilsonrotary.com",
-        description: "B2B contracted site built with Wordpress to enable self management and maintenance.",
+        description: "Contracted site built with Wordpress for the Wilson, North Carolina Rotary Club.",
         link: "https://wilsonrotary.com",
         retrospective: null,
         repository: null,
-		emoji: "🌎"
+		emoji: "⚙️"
     },
     {
         name: "haulinhatchets.com",
@@ -78,15 +86,11 @@ const projects = [
 
 					<div>
 						<p class="pb-4">
-							<b class="text-accent">{project.name}</b> - <Fragment set:html={project.description} />
+							<a href={project.link} class="link" target="_blank"><b class="text-accent">{project.name}</b></a> - <Fragment set:html={project.description} />
 						</p>
 	
-						{project.link && (
-							<a href={project.link} class="link" target="_blank">Site</a>
-						)}
 						{project.repository && (
 							<span>
-								{" • "}
 								<a href={project.repository} class="link" target="_blank">Repository</a>
 							</span>
 						)}
