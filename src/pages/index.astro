@@ -5,58 +5,51 @@ import SocialList from "@/components/SocialList";
 const projects = [
 	{
         name: "nonovel.io",
-        description: "A website for reading public domain books.",
+        description: "A website for reading public domain books with social-media-like features.",
         link: "https://nonovel.io",
-        retrospective: "/posts/nonovel-io/",
-        repository: null,
+		links: [{ name: "retrospective", url: "/posts/nonovel-io/" }],
 		emoji: "📚"
     },
     {
         name: "tldw.info",
         description: "Too long, didn't watch. Summarize YouTube videos from the public transcript using generative AI.",
         link: "https://tldw.info",
-        retrospective: null,
-        repository: "https://github.com/zepez/tldw.info",
+		links: [{ name: "repository", url: "https://github.com/zepez/tldw.info" }],
 		emoji: "📹"
     },
     {
         name: "instanticon.app",
         description: "A simple web app for generating favicons and app icons that can be exported as an SVG or PNG.",
         link: "https://instanticon.app",
-        retrospective: null,
-        repository: "https://github.com/zepez/instanticon.app",
+        links: [{ name: "repository", url: "https://github.com/zepez/instanticon.app" }],
 		emoji: "🎨"
     },
 	{
         name: "zepez.dev",
         description: "This site. As simple as possible, theme modified from <a class='link' href='https://github.com/chrismwilliams/astro-theme-cactus' target='_blank'>@chrismwilliams/astro-theme-cactus</a>",
         link: "https://zepez.dev",
-        retrospective: null,
-        repository: "https://github.com/zepez/zepez.dev",
+		links: [{ name: "repository", url: "https://github.com/zepez/zepez.dev" }],
 		emoji: "📍"
     },
     {
         name: "nashandpine.com",
         description: "<i>Very simple</i> brochure site. The site is no longer maintained, but a mirror is available.",
         link: "https://nashandpine.zepez.dev",
-        retrospective: null,
-        repository: "https://github.com/zepez/nashandpine.com",
+		links: [{ name: "repository", url: "https://github.com/zepez/nashandpine.com" }],
 		emoji: "📰"
     },
     {
         name: "wilsonrotary.com",
         description: "Contracted site built with Wordpress for the Wilson, North Carolina Rotary Club.",
         link: "https://wilsonrotary.com",
-        retrospective: null,
-        repository: null,
+		links: [],
 		emoji: "⚙️"
     },
     {
         name: "haulinhatchets.com",
-        description: "Mobile axe throwing trailer based out of Wilson, North Carolina. Waiver signatures and contact inqueries are emailed to all involved parties and backed up to Airtable. Redesign pending™️",
+        description: "Mobile axe throwing trailer based out of Wilson, North Carolina. Redesign pending™️",
         link: "https://haulinhatchets.com",
-        retrospective: null,
-        repository: "https://github.com/zepez/haulinhatchets.com",
+		links: [{ name: "repository", url: "https://github.com/zepez/haulinhatchets.com" }],
 		emoji: "🪓"
     },
 ]
@@ -86,20 +79,14 @@ const projects = [
 
 					<div>
 						<p class="pb-4">
-							<a href={project.link} class="link" target="_blank"><b class="text-accent">{project.name}</b></a> - <Fragment set:html={project.description} />
+							<a title={project.name} href={project.link} class="link" target="_blank"><b class="text-accent">{project.name}</b></a> - <Fragment set:html={project.description} />
 						</p>
-	
-						{project.repository && (
+
+						{project.links.map((link) => (
 							<span>
-								<a href={project.repository} class="link" target="_blank">Repository</a>
+								<a title={`${project.name} ${link.name}`} href={link.url} class="link" target="_blank">{link.name}</a>
 							</span>
-						)}
-						{project.retrospective && (
-							<span>
-								{" • "}
-								<a href={project.retrospective} class="link" target="_blank">Retrospective</a>
-							</span>
-						)}
+						))}
 					</div>
 				</li>
 			))}
