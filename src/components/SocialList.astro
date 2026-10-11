@@ -28,7 +28,7 @@ const socialLinks = [
 	socialLinks.map(({ link, name, friendlyName }) => {
 		const isEmail = name.includes("email") || friendlyName.toLowerCase().includes("email");
 		return (
-			<li class="flex mt-[2px]">
+			<li class="flex">
 				<a
 					class="inline-block sm:hover:text-link"
 					href={link}
