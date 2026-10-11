@@ -2,6 +2,9 @@
 	"name": "zep-sh",
 	"version": "3.2.0",
 	"private": false,
+	"engines": {
+		"node": "24.x"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
